@@ -110,17 +110,17 @@ func main() {
 	if err != nil {
 		fmt.Printf("Unable to read input: %v\n", err)
 	}
-	ans, err := partOne(lines)
-	if err != nil {
+	if ans, err := partOne(lines); err != nil {
 		fmt.Printf("Error in part one: %v", err)
 		return
+	} else {
+		fmt.Printf("Part one: %v\n",ans)
 	}
-	fmt.Printf("Part one: %v\n",ans)
-	ans, err = partTwo(lines)
-	if err != nil {
+
+	if ans, err := partTwo(lines); err != nil {
 		fmt.Printf("Error in part two: %v", err)
 		return
+	} else {
+		fmt.Printf("Part two: %v\n",ans)
 	}
-	fmt.Printf("Part two: %v\n",ans)
-
 }
