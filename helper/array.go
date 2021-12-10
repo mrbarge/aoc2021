@@ -20,6 +20,18 @@ func Intersection(a []string, b []string) []string {
 	return r
 }
 
+func StrLineToIntArray(a string) ([]int, error) {
+	ret := make([]int, len(a))
+	for i, v := range a {
+		sv, err := strconv.Atoi(string(v))
+		if err != nil {
+			return ret, err
+		}
+		ret[i] = sv
+	}
+	return ret, nil
+}
+
 func StrArrayToInt(arr []string) ([]int, error) {
 	ret := make([]int, len(arr))
 	for i, v := range arr {

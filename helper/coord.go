@@ -8,35 +8,47 @@ type Coord struct {
 }
 
 // Return all coordinate neighbours
-func (c Coord) GetNeighbours() []Coord {
-	return []Coord{
+func (c Coord) GetNeighbours(diagonal bool) []Coord {
+	ret := []Coord{
 		Coord{c.X - 1, c.Y},
-		Coord{c.X - 1, c.Y + 1},
-		Coord{c.X - 1, c.Y - 1},
 		Coord{c.X, c.Y - 1},
 		Coord{c.X, c.Y + 1},
 		Coord{c.X + 1, c.Y},
-		Coord{c.X + 1, c.Y + 1},
-		Coord{c.X + 1, c.Y - 1},
 	}
+	if diagonal {
+		ret = append(ret, []Coord{
+			Coord{c.X - 1, c.Y + 1},
+			Coord{c.X - 1, c.Y - 1},
+			Coord{c.X + 1, c.Y + 1},
+			Coord{c.X + 1, c.Y - 1},
+		}...)
+	}
+	return ret
 }
 
 // Return all coordinate neighbours, excluding negatives
-func (c Coord) GetNeighboursPos() []Coord {
+func (c Coord) GetNeighboursPos(diagonal bool) []Coord {
 	ret := make([]Coord, 0)
 	ret = append(ret, Coord{c.X, c.Y + 1})
 	ret = append(ret, Coord{c.X + 1, c.Y})
-	ret = append(ret, Coord{c.X + 1, c.Y + 1})
+	if diagonal {
+		ret = append(ret, Coord{c.X + 1, c.Y + 1})
+	}
+
 	if c.X > 0 {
 		ret = append(ret, Coord{c.X - 1, c.Y})
-		ret = append(ret, Coord{c.X - 1, c.Y + 1})
-		if c.Y > 0 {
-			ret = append(ret, Coord{c.X - 1, c.Y - 1})
+		if diagonal {
+			ret = append(ret, Coord{c.X - 1, c.Y + 1})
+			if c.Y > 0 {
+				ret = append(ret, Coord{c.X - 1, c.Y - 1})
+			}
 		}
 	}
 	if c.Y > 0 {
 		ret = append(ret, Coord{c.X, c.Y - 1})
-		ret = append(ret, Coord{c.X + 1, c.Y - 1})
+		if diagonal {
+			ret = append(ret, Coord{c.X + 1, c.Y - 1})
+		}
 	}
 	return ret
 }
