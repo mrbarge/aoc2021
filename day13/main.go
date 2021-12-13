@@ -39,9 +39,6 @@ func partTwo(coords []helper.Coord, folds []Fold) {
 		grid = doFold(grid, maxCoord, fold)
 	}
 	printGrid(grid, maxCoord)
-	//grid = doFold(grid, maxCoord, folds[0])
-	result := countDots(grid)
-	return result, nil
 }
 
 func countDots(grid map[int]map[int]bool) (count int) {
