@@ -26,6 +26,21 @@ func (c Coord) GetNeighbours(diagonal bool) []Coord {
 	return ret
 }
 
+func (c Coord) GetOrderedSquare() []Coord {
+	ret := []Coord{
+		Coord{c.X - 1, c.Y - 1},
+		Coord{c.X, c.Y - 1},
+		Coord{c.X + 1, c.Y - 1},
+		Coord{c.X - 1, c.Y},
+		Coord{c.X, c.Y},
+		Coord{c.X + 1, c.Y},
+		Coord{c.X - 1, c.Y + 1},
+		Coord{c.X, c.Y + 1},
+		Coord{c.X + 1, c.Y + 1},
+	}
+	return ret
+}
+
 // Return all coordinate neighbours, excluding negatives
 func (c Coord) GetNeighboursPos(diagonal bool) []Coord {
 	ret := make([]Coord, 0)
